@@ -12,7 +12,7 @@
         <?php foreach ($valeur as $resultat): ?>
             <tbody>
             <tr>
-                <td><?php echo $resultat->designation_produit;?></td>
+                <td><?php echo $resultat->produit;?></td>
                 <td><?php echo $resultat->quantite;?></td>
                 <td><?php echo $resultat->quantite_vendu;?></td>
                 <td><?php echo $resultat->reste;?></td>                  

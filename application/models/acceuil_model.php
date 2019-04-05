@@ -5,19 +5,13 @@ class Acceuil_model extends CI_Model {
     public function produit_and_reste(){
 
 
-        $vendu = $this->db->query("SELECT c.quantite_vendu as quantite_vendu ,p.quantite as quantite, p.quantite-c.quantite_vendu as reste
-        FROM [wallboard].[dbo].[commande] c
-        INNER JOIN [wallboard].[dbo].[produit] p ON c.designation_produit = p.designation_produit");
+        $vendu = $this->db->query("SELECT COALESCE(c.designation_produit,p.designation_produit) as produit, p.prix_unitaire ,p.quantite,
+      COALESCE(c.quantite_vendu , 0) as quantite_vendu ,
+      COALESCE(p.quantite-c.quantite_vendu, p.quantite) as reste
+    FROM [wallboard].[dbo].[produit] p full outer join [wallboard].[dbo].[commande] c on p.designation_produit = c.designation_produit ");
         $vendus = $vendu->result();
         //var_dump($vendus);die();
-        
-        $valeur = $this->db->query("SELECT  [designation_produit],[quantite] FROM [wallboard].[dbo].[produit]");
-        $result =  $valeur->result();
-        $data = array_merge($result,$vendus);
-
-        var_dump($data);die();
-
-        return $data;
+         return $vendus;
     }
 }
 
