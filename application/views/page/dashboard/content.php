@@ -11,6 +11,34 @@
 }
 </style>
 <div class="container">
+    <div>
+    <form method="post">
+    
+        <select name="choix[]">
+        <?php foreach($detail as $details) : ?>
+            <option value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
+        <?php endforeach;?>  
+        </select>
+        <input type = 'submit' name = 'submit' value = "voir">
+    
+    </form>
+
+    <?php
+        if  (isset($_POST['submit']))
+        {
+            if (isset($_POST['choix'])){
+                foreach ($_POST['choix'] as $choix):
+                    echo('you selected '.$choix);
+                endforeach;
+            }
+        }
+    
+    
+    ?>
+    
+    
+            
+    </div>
     <table class="table table-sm">
         <thead class="thead-dark">
             <tr>
@@ -62,7 +90,6 @@
                     <h5 class="card-title">Total Vendu</h5>
                     <p class="card-text"><?php echo $total_vendu;?></p>
                 </div>
-                <i ></i>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -82,5 +109,5 @@
                 </div>
             </div>
         </div>          
-        </div>
+        </div>       
 </div>

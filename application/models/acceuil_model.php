@@ -17,6 +17,32 @@ class Acceuil_model extends CI_Model {
         //var_dump($vendus);die();
          return $vendus;
     }
+
+    public function filtre(){
+        $detail = $this->db->query("SELECT [designation_produit]
+        ,[prix_unitaire]
+        ,[quantite]
+    FROM [wallboard].[dbo].[produit]");
+
+    $details = $detail->result();
+    return $details;  
+    }
+
+    public function montre(){
+        $montre = $this->db->query("SELECT [prenom_client]
+        ,c.[designation_produit]
+        ,c.[quantite_vendu]
+        ,c.[date_commande]
+    FROM [wallboard].[dbo].[commande] c 
+    inner join [wallboard].[dbo].[client] cl on 
+    cl.matricule_client = c.matricule_client
+    inner join [wallboard].[dbo].[produit] p
+      on p.designation_produit = c.designation_produit 
+      and p.designation_produit = 'montre'");
+
+      $montres = $montre->result();
+      return $montres;
+    }
 }
 
 
