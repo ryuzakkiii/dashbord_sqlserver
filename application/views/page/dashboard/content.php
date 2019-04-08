@@ -7,13 +7,9 @@
     background-color : #C3D7D7;
     width : 210px;
     height : 110px;
+    cursor : pointer ;
 }
-
 </style>
-
-
-
-
 <div class="container">
     <table class="table table-sm">
         <thead class="thead-dark">
@@ -25,7 +21,6 @@
                 <th scope="col">Reste</th>   
             </tr>
         </thead>
-        <?php if( isset($valeur) && count($valeur) ): ?>
         <?php foreach ($valeur as $resultat): ?>
             <tbody>
             <tr>
@@ -36,12 +31,7 @@
                 <td><?php echo $resultat->reste;?></td>   
             </tr> 
             </tbody>
-    
-            
          <?php endforeach;?>
-        <?php endif;?>
-
-        
     </table>
 
     <?php        
@@ -54,15 +44,12 @@
             $total_vendu += $value->quantite_vendu;
             $total_montant += $value->montant;
             $total_reste += $value->reste; 
-            
         endforeach;
-
     ?>    
-
         <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <div class="card" style="">
+                <div class="card bg-light mb-3" style="">
                     <div class="card-body">
                     <h5 class="card-title">Total Stock</h5>
                     <p class="card-text"><?php echo $total_stock;?></p>
@@ -70,15 +57,16 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card" style="">
+                <div class="card bg-light mb-3" style="">
                     <div class="card-body">
                     <h5 class="card-title">Total Vendu</h5>
                     <p class="card-text"><?php echo $total_vendu;?></p>
                 </div>
+                <i ></i>
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card" style="">
+                <div class="card bg-light mb-3" style="">
                     <div class="card-body">
                     <h5 class="card-title"> Montant Total</h5>
                     <p class="card-text"><?php echo $total_montant;?> Ariary</p>
@@ -86,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card" style="">
+                <div class="card bg-light mb-3" style="">
                     <div class="card-body">
                     <h5 class="card-title">reste stock</h5>
                     <p class="card-text"><?php echo $total_reste;?></p>
@@ -95,6 +83,4 @@
             </div>
         </div>          
         </div>
-        
-
 </div>
