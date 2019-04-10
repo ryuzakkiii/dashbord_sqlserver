@@ -18,7 +18,7 @@ class Acceuil_model extends CI_Model {
          return $vendus;
     }
 
-    public function filtre(){
+    public function produit(){
         $detail = $this->db->query("SELECT [designation_produit]
         ,[prix_unitaire]
         ,[quantite]
@@ -28,21 +28,24 @@ class Acceuil_model extends CI_Model {
     return $details;  
     }
 
-    public function montre(){
-        $montre = $this->db->query("SELECT [prenom_client]
-        ,c.[designation_produit]
-        ,c.[quantite_vendu]
-        ,c.[date_commande]
-    FROM [wallboard].[dbo].[commande] c 
-    inner join [wallboard].[dbo].[client] cl on 
-    cl.matricule_client = c.matricule_client
-    inner join [wallboard].[dbo].[produit] p
-      on p.designation_produit = c.designation_produit 
-      and p.designation_produit = 'montre'");
 
-      $montres = $montre->result();
-      return $montres;
+    public function filtre($var){
+        $valeur = array();
+        $this->db->select('*');
+        $this->db->from('commande');
+        $this->db->join('client', 'commande.matricule_client = client.matricule_client');
+        $this->db->join('produit', 'produit.designation_produit = commande.designation_produit');
+        $this->db->where('produit.designation_produit' , $var['designation_produit']);
+        $q = $this->db->get();
+
+        $valeur = $q->result_array();
+
+        return $valeur;
+
+    
     }
+
+
 }
 
 
