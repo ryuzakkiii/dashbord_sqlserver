@@ -15,7 +15,7 @@ class Acceuil extends CI_Controller {
         $data['detail'] = $this->acceuil_model->produit();
         $array = array_merge($data);
         $this->load->view('page/acceuil');
-        $this->load->view('page/dashboard/header');
+        //$this->load->view('page/dashboard/header');
         $this->load->view('page/dashboard/content',$array);
 
     }

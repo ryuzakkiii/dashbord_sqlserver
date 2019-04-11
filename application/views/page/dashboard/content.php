@@ -1,57 +1,11 @@
-<style>
-.card{
-    width : 200px;
-    text-align : center;
-}
-.card:hover{
-    background-color : #C3D7D7;
-    width : 210px;
-    height : 110px;
-    cursor : pointer ;
-}
-</style>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-<div class="container">
-    <div>
-    <h3>Filtre par produit:</h3>
 
-    <form method="post">
-    
-        <select id="filtre">
-        <?php foreach($detail as $details) : ?>
-            <option id="produit" value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
-        <?php endforeach;?>  
-        </select>
+<div class="jumbotron">
 
-
-
-
-    <table id="prod" class="table table-sm"> 
-        <thead class="thead-dark">
-            <tr>
-                <th>Nom client</th>
-                <th>Produit</th>
-                <th>Nombre</th>
-                <th>Date commande</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            
-            </tr>
-        </tbody>
-        
-
-    </table>
-    
-    </form>            
-    </div>
-    
-
-    <?php        
+<?php        
         $total_stock = 0;
         $total_vendu = 0;
         $total_montant = 0;
@@ -62,8 +16,8 @@
             $total_montant += $value->montant;
             $total_reste += $value->reste; 
         endforeach;
-    ?>    
-        <div class="container">
+    ?>
+<div style="height : 100px;" class="container">
         <div class="row">
             <div class="col-sm-3">
                 <div class="card bg-light mb-3" style="">
@@ -98,7 +52,74 @@
                 </div>
             </div>
         </div>          
-        </div>    
+    </div>
+</div>
+<div class="container">
+
+<h3>Commande par produit :</h3>
+
+<table class="table table-sm" style="padding : 30px;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Vendu</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Reste</th>   
+            </tr>
+        </thead>
+        <?php foreach ($valeur as $resultat): ?>
+            <tbody>
+            <tr>
+                <td><?php echo $resultat->designation_produit;?></td>
+                <td><?php echo $resultat->quantite;?></td>
+                <td><?php echo $resultat->quantite_vendu;?></td>
+                <td><?php echo $resultat->montant;?></td>
+                <td><?php echo $resultat->reste;?></td>   
+            </tr> 
+            </tbody>
+         <?php endforeach;?>
+    </table>   
+
+    <h3>Details des commandes par produit :</h3>
+
+    <form method="post">
+    
+        <select id="filtre">
+        <?php foreach($detail as $details) : ?>
+            <option id="produit" value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
+        <?php endforeach;?>  
+        </select>
+
+    </form>
+
+    <br>
+
+
+    <table id="prod" class="table table-sm"> 
+        <thead class="thead-light">
+            <tr>
+                <th>Nom client</th>
+                <th>Produit</th>
+                <th>Nombre</th>
+                <th>Date commande</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            
+            </tr>
+        </tbody>
+        
+
+    </table>
+    
+    </form>            
+    </div>
+    
+
+        
 
     
 </div>
@@ -144,25 +165,3 @@ $('#filtre').change(function(){
 
 
 
-<!--table class="table table-sm">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Produit</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Vendu</th>
-                <th scope="col">Montant</th>
-                <th scope="col">Reste</th>   
-            </tr>
-        </thead>
-        </*?php foreach ($valeur as $resultat): ?>
-            <tbody>
-            <tr>
-                <td></*?php echo $resultat->designation_produit;?></td>
-                <td></*?php echo $resultat->quantite;?></td>
-                <td></*?php echo $resultat->quantite_vendu;?></td>
-                <td></*?php echo $resultat->montant;?></td>
-                <td></*?php echo $resultat->reste;?></td>   
-            </tr> 
-            </tbody>
-         </*?php endforeach;?>
-    </table>   
