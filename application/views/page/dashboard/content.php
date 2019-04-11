@@ -15,6 +15,8 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <div class="container">
     <div>
+    <h3>Filtre par produit:</h3>
+
     <form method="post">
     
         <select id="filtre">
@@ -22,6 +24,8 @@
             <option id="produit" value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
         <?php endforeach;?>  
         </select>
+
+
 
 
     <table id="prod" class="table table-sm"> 
@@ -80,7 +84,7 @@
             <div class="col-sm-3">
                 <div class="card bg-light mb-3" style="">
                     <div class="card-body">
-                    <h5 class="card-title"> Montant Total</h5>
+                    <h5 class="card-title"> Caisse</h5>
                     <p class="card-text"><?php echo $total_montant;?> Ariary</p>
                 </div>
                 </div>
@@ -113,9 +117,12 @@ $('#filtre').change(function(){
       alert('Something is wrong');
     },
     success: function(valeur){
-      $.each(valeur,function(index,data){
-        $('#prod').append('<tr><td>' + data['nom_client'] + '</td><td>' + data['designation_produit'] + '</td><td>' + data['quantite_vendu'] + '</td><td>' + data['date_commande'] + '</td></tr>') ;
+      $('#prod').find('tbody').remove();
+      $('#prod').append('<tbody></tbody>');
+      $.each(valeur,function(index,data){  
+        $('#prod').find('tbody').append('<tr><td>' + data['nom_client'] + '</td><td>' + data['designation_produit'] + '</td><td>' + data['quantite_vendu'] + '</td><td>' + data['date_commande'] + '</td></tr>') ;
       });
+      
     }
   });
 
