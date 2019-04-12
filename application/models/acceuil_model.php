@@ -36,6 +36,7 @@ class Acceuil_model extends CI_Model {
         $this->db->join('client', 'commande.matricule_client = client.matricule_client');
         $this->db->join('produit', 'produit.designation_produit = commande.designation_produit');
         $this->db->where('produit.designation_produit' , $var['designation_produit']);
+        $this->db->order_by('date_commande', 'DESC');
         $q = $this->db->get();
 
         $valeur = $q->result_array();
