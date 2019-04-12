@@ -17,7 +17,7 @@
             $total_reste += $value->reste; 
         endforeach;
     ?>
-        <div class="container">
+        <div class="container-fluide">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="card border-info mx-sm-1 p-3" >
@@ -53,39 +53,31 @@
 <div class="container-fluide" style="font_size :10px;">
 
     <div class="row" style="padding :50px;">
-            <div class="col-sm-7" >
-                <div class="card  mx-sm p-3" style=" background-color : #F0FFFF" >
-                    <h4>Commande par produit </h4>
+            <div class="col-sm-7">
+            <div class="row" style="font-size :12px; overflow : auto;">
+            <?php foreach ($valeur as $resultat): ?>
 
-                    <table class="table table-sm" >
-                        <thead  style="background-color: #FFC0CB ;color: white;">
-                            <tr>
-                                <th scope="col">Produit</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Vendu</th>
-                                <th scope="col">Montant</th>
-                                <th scope="col">Reste</th>   
-                            </tr>
-                        </thead>
-                        <?php foreach ($valeur as $resultat): ?>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $resultat->designation_produit;?></td>
-                                <td><?php echo $resultat->quantite;?></td>
-                                <td><?php echo $resultat->quantite_vendu;?></td>
-                                <td><?php echo $resultat->montant;?></td>
-                                <td><?php echo $resultat->reste;?></td>   
-                            </tr> 
-                        </tbody>
-                        <?php endforeach;?>
-                    </table>
+                <div class="col-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header"><?php echo $resultat->designation_produit;?></div>
+                        <div class="card-body">
+                            <p>Stock : <?php echo $resultat->quantite;?></p>
+                            <p>Vendu : <?php echo $resultat->quantite_vendu;?></p>
+                            <p>Montant : <?php echo $resultat->montant;?></p>
+                            <p>Reste : <?php echo $resultat->reste;?></p>
+                        </div>
+                    </div>            
+            </div>
+            <?php endforeach;?>            
+
                 </div>
             </div>
+            
 
             <div class="col-sm-5">
-                    <div class="card  mx-sm p-3" style="height : 400px; overflow : hidden;">
+                    <div class="card  mx-sm p-3" style="height : 100%; overflow : auto;">
 
-                    <h4> Detail Commande par produit </h4>
+                    <h4 style=" color :#778899"> Detail Commande par produit </h4>
 
                         <form method="post">
                 
@@ -97,7 +89,7 @@
 
                         </form>
                         <br>
-                            <table id="prod" class="table table-sm" style="font-size : 15px;"> 
+                            <table id="prod" class="table table-sm" > 
                                 <thead style="background-color: #FFC0CB ;color: white; ">
                                     <tr>
                                         <th>Nom client</th>
@@ -106,7 +98,7 @@
                                         <th>Date commande</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody >
                                     <tr>
                             
                                     </tr>
@@ -139,7 +131,7 @@ $('#filtre').change(function(){
     },
     success: function(valeur){
       $('#prod').find('tbody').remove();
-      $('#prod').append('<tbody></tbody>');
+      $('#prod').append('<tbody style="font-size : 12px;"></tbody>');
       $.each(valeur,function(index,data){  
         $('#prod').find('tbody').append('<tr><td>' + data['nom_client'] + '</td><td>' + data['designation_produit'] + '</td><td>' + data['quantite_vendu'] + '</td><td>' + data['date_commande'] + '</td></tr>') ;
       });
