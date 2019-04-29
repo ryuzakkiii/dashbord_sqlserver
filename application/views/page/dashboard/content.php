@@ -3,7 +3,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-<div class="jumbotron" style="background-color : #1E90FF">
+<div class="jumbotron" style="background-color : #1E90FF;">
+
+<!--recap-->
 
 <?php        
         $total_stock = 0;
@@ -50,14 +52,16 @@
                 </div>          
         </div>
 </div>
-<div class="container-fluide" style="font_size :10px;">
 
-    <div class="row" style="padding :50px;">
-            <div class="col-sm-7">
-            <div class="row" style="font-size :12px; overflow : auto;">
+
+
+    <!--recap par produit-->
+        <div class="container" style="font_size :10px;">
+        <h4 style=" color :#778899"> Detail Commande</h4>
+            <div class="row" style="height:350px; font-size :12px; overflow : auto;">
             <?php foreach ($valeur as $resultat): ?>
 
-                <div class="col-3">
+                <div class="col-2">
                     <div class="card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header"><?php echo $resultat->designation_produit;?></div>
                         <div class="card-body">
@@ -67,15 +71,16 @@
                             <p>Reste : <?php echo $resultat->reste;?></p>
                         </div>
                     </div>            
-            </div>
+                </div>
             <?php endforeach;?>            
 
-                </div>
             </div>
-            
+        </div>
 
-            <div class="col-sm-5">
-                    <div class="card  mx-sm p-3" style="height : 100%; overflow : auto;">
+        <!--filtre par produit-->
+    
+        <div class="container" style="font_size :10px;">
+            <div class="card  mx-sm p-3" style="height:300px; overflow : auto;">
 
                     <h4 style=" color :#778899"> Detail Commande par produit </h4>
 
@@ -87,7 +92,6 @@
                         <?php endforeach;?>  
                         </select>
 
-                        </form>
                         <br>
                             <table id="prod" class="table table-sm" > 
                                 <thead style="background-color: #FFC0CB ;color: white; ">
@@ -105,9 +109,39 @@
                                 </tbody>
                             </table> 
                         </form>
-                    </div> 
             </div> 
-    </div>         
+        </div>
+
+        <!--filtre par date-->
+
+        <div class="container" style="font_size :10px;">
+            <div class="card  mx-sm p-3" style="height:300px; overflow : auto;">
+
+                    <h4 style=" color :#778899"> Detail Commande par date </h4>
+
+                        <form method="post">
+                
+                        <input type="date" id="date"  value="2019-04-29">
+
+                        <br>
+                            <table id="prod_date" class="table table-sm" > 
+                                <thead style="background-color: #FFC0CB ;color: white; ">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Produit</th>
+                                        <th>Nom client</th>
+                                        <th>Nombre</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr>
+                            
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        </form>
+            </div> 
+        </div>
 </div>
     
 
@@ -116,13 +150,46 @@
     
 </div>
 <script>
+
+//filtre par date
+$(document).ready(function(){
+
+$('#date').change(function(){
+    var  date_commande = $(this).val();
+
+    $.ajax({
+        url : '<?php echo base_url();?>acceuil/filtre_par_date',
+        method : "POST",
+        data : {date_commande: date_commande},
+        dataType: 'json',
+        error : function(){
+            alert('something wrong');
+        },
+        success : function(date){
+            $('#prod_date').find('tbody').remove();
+            $('#prod_date').append('<tbody style="font-size : 12px;"></tbody>');
+            $.each(date,function(index,data){  
+                $('#prod_date').find('tbody').append('<tr><td>' + data['date_commande'] + '</td><td>' + data['designation_produit'] + '</td><td>' + data['nom_client'] + '</td><td>' + data['quantite_vendu'] + '</td></tr>') ;
+        });        
+        }
+        
+
+    })
+
+});
+});
+</script>
+<script>
+
+//filtre par produit
+
 $(document).ready(function(){
 
 $('#filtre').change(function(){
   var designation_produit  = $(this).val();
 
   $.ajax({
-    url: '<?php echo base_url();?>acceuil/filtre',
+    url: '<?php echo base_url();?>acceuil/filtre_par_produit',
     method : "POST",
     data : {designation_produit: designation_produit},
     dataType : 'json',
@@ -141,7 +208,13 @@ $('#filtre').change(function(){
 
 });
 });
+
+
+
+
 </script>
+
+
 
 
 

@@ -29,7 +29,7 @@ class Acceuil_model extends CI_Model {
     }
 
 
-    public function filtre($var){
+    public function filtre_par_produit($var){
         $valeur = array();
         $this->db->select('*');
         $this->db->from('commande');
@@ -44,6 +44,20 @@ class Acceuil_model extends CI_Model {
         return $valeur;
 
     
+    }
+
+    public function filtre_par_date($dates){
+        $date = array();
+        $this->db->select('*');
+        $this->db->from('commande');
+        $this->db->join('client', 'commande.matricule_client = client.matricule_client');
+        $this->db->where('commande.date_commande', $dates['date_commande']);
+        
+        $q = $this->db->get();
+        $date = $q->result_array();
+
+        return $date;
+
     }
 
 

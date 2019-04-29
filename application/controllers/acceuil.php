@@ -20,11 +20,18 @@ class Acceuil extends CI_Controller {
 
     }
 
-        public function filtre(){
+    public function filtre_par_produit(){
         $var = $this->input->post();
 
-        $data = $this->acceuil_model->filtre($var);
+        $data = $this->acceuil_model->filtre_par_produit($var);
 
+        echo json_encode($data);
+    }
+
+    public function filtre_par_date(){
+
+        $dates = $this->input->post();
+        $data = $this->acceuil_model->filtre_par_date($dates);
         echo json_encode($data);
     }
     
