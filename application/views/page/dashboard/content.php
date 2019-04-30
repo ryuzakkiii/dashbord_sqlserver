@@ -1,7 +1,23 @@
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <title>Document</title>
+</head>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <div class="jumbotron" style="background-color : #1E90FF;">
 
@@ -51,101 +67,106 @@
                     </div>
                 </div>          
         </div>
-</div>
-
-
-
-    <!--recap par produit-->
-        <div class="container" style="font_size :10px;">
-        <h4 style=" color :#778899"> Detail Commande</h4>
-            <div class="row" style="height:350px; font-size :12px; overflow : auto;">
-            <?php foreach ($valeur as $resultat): ?>
-
-                <div class="col-2">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header"><?php echo $resultat->designation_produit;?></div>
-                        <div class="card-body">
-                            <p>Stock : <?php echo $resultat->quantite;?></p>
-                            <p>Vendu : <?php echo $resultat->quantite_vendu;?></p>
-                            <p>Montant : <?php echo $resultat->montant;?></p>
-                            <p>Reste : <?php echo $resultat->reste;?></p>
-                        </div>
-                    </div>            
-                </div>
-            <?php endforeach;?>            
-
-            </div>
         </div>
 
         <!--filtre par produit-->
-    
-        <div class="container" style="font_size :10px;">
-            <div class="card  mx-sm p-3" style="height:300px; overflow : auto;">
 
-                    <h4 style=" color :#778899"> Detail Commande par produit </h4>
 
-                        <form method="post">
-                
-                        <select id="filtre">
-                        <?php foreach($detail as $details) : ?>
-                            <option id="produit" value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
-                        <?php endforeach;?>  
-                        </select>
+        <div class="container-fluide">
+            <div class="row">
+            <div class="col-4">                
+                    <h4> Detail Commande par produit </h4>
 
-                        <br>
-                            <table id="prod" class="table table-sm" > 
-                                <thead style="background-color: #FFC0CB ;color: white; ">
-                                    <tr>
-                                        <th>Nom client</th>
-                                        <th>Produit</th>
-                                        <th>Nombre</th>
-                                        <th>Date commande</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <tr>
-                            
-                                    </tr>
-                                </tbody>
-                            </table> 
+                    <div class="card  mx-sm p-3" id="filtre_prod">
+
+
+                                <form method="post">
+                        
+                                <select id="filtre">
+                                <?php foreach($detail as $details) : ?>
+                                    <option id="produit" value="<?php echo $details->designation_produit?>"><?php echo $details->designation_produit?></option>
+                                <?php endforeach;?>  
+                                </select>
+
+                                <br>
+                                    <table id="prod" class="table table-sm" > 
+                                        <thead>
+                                            <tr>
+                                                <th>Nom client</th>
+                                                <th>Produit</th>
+                                                <th>Nombre</th>
+                                                <th>Date commande</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr>
+                                    
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </form>
+                    </div> 
+
+                <!--filtre par date-->
+
+                    <h4> Detail Commande par date </h4>
+
+                    <div class="card  mx-sm p-3" id="filtre_date">
+                        <form method="post">                        
+                            <input type="date" id="date"  value="2019-04-29">
+                                    <table id="prod_date" class="table table-sm" > 
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Produit</th>
+                                                <th>Nom client</th>
+                                                <th>Nombre</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr>
+                                    
+                                            </tr>
+                                        </tbody>
+                                    </table> 
                         </form>
-            </div> 
+                    </div> 
+                </div>
+                <div class="col-8">
+                    <h4 data-toggle="collapse" href="#collapse1"><button type="button" class="list-group-item list-group-item-action active">
+                    Detail Produit
+                    </button></h4>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                            <div class="row" id="recap_prod">
+                                <?php foreach ($valeur as $resultat): ?>
+
+                                    <div class="col-2">
+                                        <div class="card bg-light mb-3">
+                                            <div class="card-header"><?php echo $resultat->designation_produit;?></div>
+                                            <div class="card-body">
+                                                <p>Stock : <?php echo $resultat->quantite;?></p>
+                                                <p>Vendu : <?php echo $resultat->quantite_vendu;?></p>
+                                                <p>Montant : <?php echo $resultat->montant;?></p>
+                                                <p>Reste : <?php echo $resultat->reste;?></p>
+                                            </div>
+                                        </div>            
+                                    </div>
+                                <?php endforeach;?>            
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
         </div>
-
-        <!--filtre par date-->
-
-        <div class="container" style="font_size :10px;">
-            <div class="card  mx-sm p-3" style="height:300px; overflow : auto;">
-
-                    <h4 style=" color :#778899"> Detail Commande par date </h4>
-
-                        <form method="post">
-                
-                        <input type="date" id="date"  value="2019-04-29">
-
-                        <br>
-                            <table id="prod_date" class="table table-sm" > 
-                                <thead style="background-color: #FFC0CB ;color: white; ">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Produit</th>
-                                        <th>Nom client</th>
-                                        <th>Nombre</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <tr>
-                            
-                                    </tr>
-                                </tbody>
-                            </table> 
-                        </form>
-            </div> 
-        </div>
-</div>
-    
-
-        
+</div>   
 
     
 </div>
@@ -177,14 +198,6 @@ $('#date').change(function(){
     })
 
 });
-});
-</script>
-<script>
-
-//filtre par produit
-
-$(document).ready(function(){
-
 $('#filtre').change(function(){
   var designation_produit  = $(this).val();
 
@@ -208,25 +221,4 @@ $('#filtre').change(function(){
 
 });
 });
-
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

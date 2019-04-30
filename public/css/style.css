@@ -1,0 +1,43 @@
+#recap_prod{
+    height:350px; font-size :13px; overflow : auto;
+    
+}
+
+#filtre_prod{
+    height:300px; overflow : auto; font-size :13px; 
+}
+#filtre_date{
+    height:300px; overflow : auto;font-size :13px;
+}
+#prod thead{
+    background-color: #FFC0CB ;color: white;
+}
+
+#prod_date thead{
+    background-color: #FFC0CB ;color: white; 
+}
+h4{
+    color :#778899;
+}
+[data-toggle="collapse"] {
+    cursor: pointer;
+    &[aria-expanded="true"] .fa-chevron-right:before {
+      content: "\f078";
+    }
+}
+#detail{
+    display: none;
+}
+.container-fluide{
+    padding :20px;
+}
+
+
+
+
+
+
+
+
+
+
