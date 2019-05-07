@@ -10,28 +10,23 @@ class Acceuil extends CI_Controller {
         $this->load->model('acceuil_model');
     }
 
-    public function index(){        
-        $data['valeur'] = $this->acceuil_model->produit_and_reste();
-        $data['detail'] = $this->acceuil_model->produit();
-        $array = array_merge($data);
-        $this->load->view('page/dashboard/content',$array);
-
+    public function index(){  
+        $data['agent'] = $this->acceuil_model->agent();
+        $this->load->view('page/dashboard/content',$data);
     }
 
-    public function filtre_par_produit(){
-        $var = $this->input->post();
-
-
-        $data = $this->acceuil_model->filtre_par_produit($var);
-
+    public function filtre(){
+        $daty = $this->input->post('daty');
+     
+        $data['agent'] = $this->acceuil_model->filtre($daty);
+        $data['totappel'] = $this->acceuil_model->total_appel($daty);    
+        $data['aqualifie'] = $this->acceuil_model->appel_qualifié($daty);
+        $data['repondeur'] = $this->acceuil_model->repondeur($daty);
+        $data['rappel'] = $this->acceuil_model->rappel($daty);
+        $data['injoign'] = $this->acceuil_model->injoignable($daty);
+        $data['test'] = $this->acceuil_model->appel_test($daty);
         echo json_encode($data);
+
     }
 
-    public function filtre_par_date(){
-
-        $dates = $this->input->post();
-        $data = $this->acceuil_model->filtre_par_date($dates);
-        echo json_encode($data);
-    }
-    
 }
