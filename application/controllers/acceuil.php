@@ -14,24 +14,17 @@ class Acceuil extends CI_Controller {
         $data['agent'] = $this->acceuil_model->agent();
         $this->load->view('page/dashboard/content',$data);
     }
-    public function valeur(){
-
-        $dates = $this->input->post('dates'); 
-        $data['totappel'] = $this->acceuil_model->total_appel($dates);    
-        $data['aqualifie'] = $this->acceuil_model->appel_qualifié($dates);
-        $data['repondeur'] = $this->acceuil_model->repondeur($dates);
-        $data['rappel'] = $this->acceuil_model->rappel($dates);
-        $data['injoign'] = $this->acceuil_model->injoignable($dates);
-        $data['test'] = $this->acceuil_model->appel_test($dates);
-
-        echo json_encode($data);
-    }
 
     public function filtre(){
-        $agentname = $this->input->post('agentname'); 
-        $dates = $this->input->post('dates');
+        $daty = $this->input->post('daty');
      
-        $data = $this->acceuil_model->filtre($agentname,$dates);
+        $data['agent'] = $this->acceuil_model->filtre($daty);
+        $data['totappel'] = $this->acceuil_model->total_appel($daty);    
+        $data['aqualifie'] = $this->acceuil_model->appel_qualifié($daty);
+        $data['repondeur'] = $this->acceuil_model->repondeur($daty);
+        $data['rappel'] = $this->acceuil_model->rappel($daty);
+        $data['injoign'] = $this->acceuil_model->injoignable($daty);
+        $data['test'] = $this->acceuil_model->appel_test($daty);
         echo json_encode($data);
 
     }
