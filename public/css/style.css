@@ -32,6 +32,9 @@ h4{
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     cursor: pointer;
 }
+#kaka{
+    max-width: 18rem;
+}
 
 
 

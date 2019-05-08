@@ -87,7 +87,8 @@ class Acceuil_model extends CI_Model {
              FROM ct_NOMINATION_AUDE where calling_date = '$daty' 
             and typecall = '571_RAPPEL_PROGRAMME'
              group by agentname
-        ) rappelp on all_appel.agentname = rappelp.agentname");
+        ) rappelp on all_appel.agentname = rappelp.agentname
+        order by qualifie desc");
         $agent = $agents->result();
         return $agent;
     }

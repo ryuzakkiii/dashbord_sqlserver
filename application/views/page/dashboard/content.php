@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/css/style.css">
-    <title>Document</title>
+    <title>Wallboard - Nomination_Aude</title>
 </head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -131,7 +131,7 @@ $('#date').change(function(){
             $("#card").append('<div class="row"></div>');
             $.each(data['agent'], function(index, agent){
                 console.log(agent);
-                $('#card .row').append('<div class="col-2" ><div class="card border-info mb-3 text-center" id="kaka" style="max-width: 18rem;"><div class="card-body text-dark"><h4 class="card-title">' + agent['agentname'] + '</h4><h3 style="color: #3f2204;" class="card-text">' +  agent['qualifie'] + '</h3><p class="card-text">'+ agent['tous'] +'</p></div></div></div>'
+                $('#card .row').append('<div class="col-2" ><div class="card border-info mb-3 text-center" id="kaka"><div class="card-body text-dark"><h4 class="card-title">' + agent['agentname'] + '</h4><h3 style="color: #3f2204;" class="card-text">' +  agent['qualifie'] + '</h3><p class="card-text">'+ agent['tous'] +'</p></div></div></div>'
                 ) ;
             });
         }     
