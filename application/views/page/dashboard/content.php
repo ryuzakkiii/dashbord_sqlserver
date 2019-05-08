@@ -131,7 +131,7 @@ $('#date').change(function(){
             $("#card").append('<div class="row"></div>');
             $.each(data['agent'], function(index, agent){
                 console.log(agent);
-                $('#card .row').append('<div class="col-2" ><div class="card border-info mb-3 text-center" id="kaka" style="max-width: 18rem;"><div class="card-body text-dark"><h4 class="card-title">' + agent['agentname'] + '</h4><h3 style="color: #3f2204;" class="card-text">' +  agent['qualifie'] + '</h3><p class="card-text">'+ agent['tous'] +'</p></div></div></div>'
+                $('#card .row').append('<div class="col-2" ><div class="card border-info mb-3 text-center" id="kaka"><div class="card-body text-dark"><h4 class="card-title">' + agent['agentname'] + '</h4><h3 style="color: #3f2204;" class="card-text">' +  agent['qualifie'] + '</h3><p class="card-text">'+ agent['tous'] +'</p></div></div></div>'
                 ) ;
             });
         }     
